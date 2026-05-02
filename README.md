@@ -4,7 +4,7 @@
   <img src="https://img.shields.io/badge/Protect_your_Pro_subscription._Ship_all_week.-6B7280?style=flat-square">
 </p>
 
-[![Stars](https://img.shields.io/github/stars/joh3d/Claude-deepseek-bridge?style=social)](https://github.com/joh3d/Claude-deepseek-bridge)
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-00ADD8?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
 [![DeepSeek API](https://img.shields.io/badge/DeepSeek-V4-4F46E5?style=for-the-badge)](https://platform.deepseek.com/api_keys)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Pro_Ready-FF6F00?style=for-the-badge)](https://claude.ai/code)
