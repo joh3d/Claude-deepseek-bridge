@@ -2,6 +2,7 @@
 
 ### You're paying for Claude Pro. You're still hitting limits by Wednesday.
 
+[![Stars](https://img.shields.io/github/stars/joh3d/Claude-deepseek-bridge?style=social)](https://github.com/joh3d/Claude-deepseek-bridge)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![DeepSeek API](https://img.shields.io/badge/DeepSeek-API-blue)](https://platform.deepseek.com/api_keys)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Pro%20Ready-orange)](https://claude.ai/code)
@@ -25,8 +26,8 @@ But every token you spend on *boilerplate* is a token you don't spend on *brilli
 
 | Command | Model | Handles | Cost (per 1M tokens) |
 |---------|-------|---------|----------------------|
-| `/deepseek` | **DeepSeek V4 Flash** (`deepseek-chat`) | Boilerplate, unit tests, docs, regex, simple scripts, style fixes | $0.14 input / $0.28 output |
-| `/deepseek-pro` | **DeepSeek V4 Pro** (`deepseek-reasoner`) | Complex refactors, debugging hypotheses, data analysis, non‑critical security checks | ~$0.55 input / $2.19 output |
+| `/deepseek` | **DeepSeek V4 Flash** (`deepseek-v4-flash`) | Boilerplate, unit tests, docs, regex, simple scripts, style fixes | $0.14 input / $0.28 output |
+| `/deepseek-pro` | **DeepSeek V4 Pro** (`deepseek-v4-pro`) | Complex refactors, debugging hypotheses, data analysis, non‑critical security checks | ~$0.55 input / $2.19 output |
 | *(stays with Claude)* | **Claude Opus 4.7** | Architecture, critical security, complex business logic, final reviews | $15 input / $75 output |
 
 **Claude still drives.** It decides what to delegate. It reviews every response. It integrates everything. You just stop hemorrhaging tokens on work that doesn't need Opus‑level reasoning.
@@ -61,6 +62,8 @@ cd Claude-deepseek-bridge
 bash setup.sh
 ```
 
+> **Windows users:** Run `bash setup.sh` via Git Bash or WSL. Alternatively, manually copy the files from `commands/` to `.claude/commands/` and set the `DEEPSEEK_API_KEY` environment variable.
+
 That's it. The installer:
 
 - Creates `.claude/commands/` and copies both slash commands
@@ -91,11 +94,11 @@ Claude never blindly trusts — it always reviews. If a DeepSeek response isn't 
 ## 🛠️ The Slash Commands
 
 ### `/deepseek` — flash‑fast, dirt‑cheap
-Uses `deepseek-chat`, the fastest model in DeepSeek's lineup. Perfect for:
+Uses `deepseek-v4-flash`, the fastest model in DeepSeek's lineup. Perfect for:
 CRUD endpoints, docstrings, unit tests, regex patterns, style formatting, first drafts of configs.
 
 ### `/deepseek-pro` — deeper reasoning, still a bargain
-Uses `deepseek-reasoner`, DeepSeek's high‑reasoning model. Perfect for:
+Uses `deepseek-v4-pro`, DeepSeek's high‑reasoning model. Perfect for:
 complex refactors, debugging hypotheses, SQL query optimization, data pipeline analysis.
 
 Both are plain Python scripts. Inspect them. Modify them. They're yours.
@@ -125,6 +128,8 @@ You're already paying for Claude Pro. That's an investment. Claude‑DeepSeek Br
 - **Wednesday:** Still going strong — no limit warning yet.
 - **Thursday:** Complex refactor? Pro handles the heavy lift; Opus approves.
 - **Friday:** You ship. On time. Without throttling.
+
+> 💸 **Cost comparison — real numbers:** A typical PR review with 50k output tokens costs you **$3.75 with Opus 4.7**, **~$0.14 with /deepseek (V4 Flash)**, or **~$1.10 with /deepseek-pro (V4 Pro)**. That's up to **27× cheaper** for routine work — with Claude still reviewing every result.
 
 You didn't downgrade. You just stopped using a Ferrari to pick up groceries.
 
