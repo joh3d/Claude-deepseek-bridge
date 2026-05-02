@@ -1,6 +1,8 @@
-# 🧠 Claude‑DeepSeek Bridge
-
-### You're paying for Claude Pro. You're still hitting limits by Wednesday.
+<p align="center">
+  <img src="https://img.shields.io/badge/Claude_Code_⟷_DeepSeek_V4-1E1B4B?style=for-the-badge&labelColor=4F46E5" alt="Claude-DeepSeek Bridge">
+  <br>
+  <img src="https://img.shields.io/badge/Protect_your_Pro_subscription._Ship_all_week.-6B7280?style=flat-square">
+</p>
 
 [![Stars](https://img.shields.io/github/stars/joh3d/Claude-deepseek-bridge?style=social)](https://github.com/joh3d/Claude-deepseek-bridge)
 [![License: MIT](https://img.shields.io/badge/License-MIT-00ADD8?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
