@@ -2,12 +2,11 @@
   <img src="https://img.shields.io/badge/Claude_Code_⟷_DeepSeek_V4-1E1B4B?style=for-the-badge&labelColor=4F46E5" alt="Claude-DeepSeek Bridge">
   <br>
   <img src="https://img.shields.io/badge/Protect_your_Pro_subscription._Ship_all_week.-6B7280?style=flat-square">
+  <br><br>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-00ADD8?style=for-the-badge&logo=opensourceinitiative&logoColor=white" alt="MIT License"></a>
+  <a href="https://platform.deepseek.com/api_keys"><img src="https://img.shields.io/badge/DeepSeek-V4-4F46E5?style=for-the-badge" alt="DeepSeek API"></a>
+  <a href="https://claude.ai/code"><img src="https://img.shields.io/badge/Claude_Code-Pro_Ready-FF6F00?style=for-the-badge" alt="Claude Code"></a>
 </p>
-
-[![Stars](https://img.shields.io/github/stars/joh3d/Claude-deepseek-bridge?style=social)](https://github.com/joh3d/Claude-deepseek-bridge)
-[![License: MIT](https://img.shields.io/badge/License-MIT-00ADD8?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
-[![DeepSeek API](https://img.shields.io/badge/DeepSeek-V4-4F46E5?style=for-the-badge)](https://platform.deepseek.com/api_keys)
-[![Claude Code](https://img.shields.io/badge/Claude_Code-Pro_Ready-FF6F00?style=for-the-badge)](https://claude.ai/code)
 
 **Sound familiar?**
 You subscribed to Claude Pro. You're paying every month. And yet — every single week — you slam into the usage wall by Wednesday morning. The rest of the week? Degraded performance, throttled requests, and that sinking feeling when you realize you just burned half your limit on a CRUD endpoint you've written a hundred times before.
@@ -18,13 +17,13 @@ Claude‑DeepSeek Bridge gives Claude Code two new slash commands — **`/deepse
 
 ---
 
-## 🩸 The Wound
+## The Wound
 
 Claude Code with **Opus 4.7** is the best coding partner you've ever had. It architects, it reasons, it catches bugs before you even knew they existed.
 
 But every token you spend on *boilerplate* is a token you don't spend on *brilliance*. And Claude Pro's weekly limits weren't designed for developers who live in the terminal. By day three, you're throttled. By day four, you're frustrated. By Friday? You're questioning your subscription.
 
-## 🩹 The Fix: Two‑Tier Delegation
+## The Fix: Two‑Tier Delegation
 
 | Command | Model | Handles | Cost (per 1M tokens) |
 |---------|-------|---------|----------------------|
@@ -49,7 +48,7 @@ graph TD
 
 ---
 
-## 🚀 Install in 30 Seconds
+## Install in 30 Seconds
 
 ### Prerequisites
 - [Claude Code](https://claude.ai/code) (with Pro subscription — you're going to protect that investment)
@@ -87,13 +86,13 @@ Claude delegates, you save tokens, nobody hits the Friday wall.
 
 ---
 
-## 🧩 How It Works
+## How It Works
 
 Claude never blindly trusts — it always reviews. If a DeepSeek response isn't up to par, Claude fixes it or escalates to Pro. You lose a few cheap tokens, not your whole week.
 
 ---
 
-## 🛠️ The Slash Commands
+## The Slash Commands
 
 ### `/deepseek` — flash‑fast, dirt‑cheap
 Uses `deepseek-v4-flash`, the fastest model in DeepSeek's lineup. Perfect for:
@@ -107,7 +106,7 @@ Both are plain Python scripts. Inspect them. Modify them. They're yours.
 
 ---
 
-## 📈 Quality: Does This Actually Work?
+## Quality: Does This Actually Work?
 
 | Task | Flash vs Opus 4.7 | Pro vs Opus 4.7 |
 |------|-------------------|-----------------|
@@ -117,11 +116,11 @@ Both are plain Python scripts. Inspect them. Modify them. They're yours.
 | Large‑scale Refactoring | 80% | 93% |
 | Architecture Design | Not delegated (Opus territory) | Not delegated |
 
-> 🎯 **The pattern:** For routine work, DeepSeek is functionally identical. For complex work, Pro gets you within 5‑7% of Opus quality — and Claude reviews everything anyway.
+>  **The pattern:** For routine work, DeepSeek is functionally identical. For complex work, Pro gets you within 5‑7% of Opus quality — and Claude reviews everything anyway.
 
 ---
 
-## 🔥 The Pro‑Subscription Protection Plan
+## The Pro‑Subscription Protection Plan
 
 You're already paying for Claude Pro. That's an investment. Claude‑DeepSeek Bridge makes sure that investment actually lasts the whole week:
 
@@ -131,13 +130,13 @@ You're already paying for Claude Pro. That's an investment. Claude‑DeepSeek Br
 - **Thursday:** Complex refactor? Pro handles the heavy lift; Opus approves.
 - **Friday:** You ship. On time. Without throttling.
 
-> 💸 **Cost comparison — real numbers:** A typical PR review with 50k output tokens costs you **$3.75 with Opus 4.7**, **~$0.14 with /deepseek (V4 Flash)**, or **~$1.10 with /deepseek-pro (V4 Pro)**. That's up to **27× cheaper** for routine work — with Claude still reviewing every result.
+> **Cost comparison — real numbers:** A typical PR review with 50k output tokens costs you **$3.75 with Opus 4.7**, **~$0.14 with /deepseek (V4 Flash)**, or **~$1.10 with /deepseek-pro (V4 Pro)**. That's up to **27× cheaper** for routine work — with Claude still reviewing every result.
 
 You didn't downgrade. You just stopped using a Ferrari to pick up groceries.
 
 ---
 
-## ❓ FAQ
+## FAQ
 
 **I'm on a free Claude plan. Does this help?**
 Yes, but you feel the pain less. Pro users are the ones watching their subscription evaporate by Wednesday — this was built for you.
@@ -156,6 +155,6 @@ No — DeepSeek Flash responds in under a second for most tasks. Pro takes 2‑5
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Found a better model pairing? Want to add support for another provider? Open a PR. This is a tool by devs, for devs.
