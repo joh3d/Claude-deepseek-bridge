@@ -35,6 +35,19 @@ But every token you spend on *boilerplate* is a token you don't spend on *brilli
 
 **Claude still drives.** It decides what to delegate. It reviews every response. It integrates everything. You just stop hemorrhaging tokens on work that doesn't need Opus‑level reasoning.
 
+```mermaid
+graph TD
+    A[You: "Claude, build feature X"] --> B{Claude Opus 4.7 assesses}
+    B -->|Routine| C["/deepseek → Flash<br/>(cheap, fast)"]
+    B -->|Moderate| D["/deepseek-pro → Pro<br/>(smart, still cheap)"]
+    B -->|Critical| E["Claude Opus 4.7<br/>(your Pro subscription earns its keep)"]
+    C --> F[Claude reviews result]
+    D --> F
+    F --> G{Good enough?}
+    G -->|Yes| H[Integrated into your codebase]
+    G -->|No| E
+```
+
 ---
 
 ## 📊 Real Numbers
