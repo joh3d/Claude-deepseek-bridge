@@ -2,7 +2,7 @@
 
 ### You're paying for Claude Pro. You're still hitting limits by Wednesday.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![DeepSeek API](https://img.shields.io/badge/DeepSeek-API-blue)](https://platform.deepseek.com/api_keys)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Pro%20Ready-orange)](https://claude.ai/code)
 
@@ -12,10 +12,6 @@ You subscribed to Claude Pro. You're paying every month. And yet — every singl
 **That ends now.**
 
 Claude‑DeepSeek Bridge gives Claude Code two new slash commands — **`/deepseek`** and **`/deepseek-pro`** — that let **Claude Opus 4.7** hand off routine and intermediate tasks to DeepSeek's fastest and most capable models. Claude stays in charge. Your limit stays intact. You ship every day of the week.
-
-<p align="center">
-  <img src="https://via.placeholder.com/800x300?text=Claude+Opus+4.7+%2B+DeepSeek+Delegation+Flow" alt="Workflow" width="70%">
-</p>
 
 ---
 
@@ -47,18 +43,6 @@ graph TD
     G -->|Yes| H[Integrated into codebase]
     G -->|No| E
 ```
-
----
-
-## 📊 Real Numbers
-
-| Scenario | Weekly Token Spend | Limits Hit? | Weekly Cost |
-|----------|-------------------|-------------|-------------|
-| Pure Claude Opus 4.7 (typical heavy week) | 800K output tokens | ✅ Yes — by Wednesday | ~$60 of your Pro allowance |
-| Claude Opus 4.7 + DeepSeek Flash only | 200K (Opus) + 600K (Flash) | ❌ No — coasting all week | ~$15 Opus + ~$0.17 Flash |
-| Claude Opus 4.7 + Flash + Pro | 150K (Opus) + 450K (Flash) + 200K (Pro) | ❌ No — full power, all week | ~$11 Opus + ~$0.13 Flash + ~$0.44 Pro |
-
-> 💡 **You're not downgrading. You're load‑balancing.** Claude Opus 4.7 does what only Claude Opus 4.7 can do. Everything else goes to models that cost pocket change.
 
 ---
 

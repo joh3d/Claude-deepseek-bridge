@@ -50,7 +50,16 @@ else
     echo -e "${GREEN}✓${NC} Python requests library available"
 fi
 
-# --- Step 5: API Key ---
+# --- Step 5: Detect shell config file ---
+if [ -n "$ZSH_VERSION" ] || [ "$SHELL" = "/bin/zsh" ] || [ "$SHELL" = "/usr/bin/zsh" ]; then
+    config_file="$HOME/.zshrc"
+elif [ -n "$BASH_VERSION" ] || [ "$SHELL" = "/bin/bash" ] || [ "$SHELL" = "/usr/bin/bash" ]; then
+    config_file="$HOME/.bashrc"
+else
+    config_file="$HOME/.profile"
+fi
+
+# --- Step 6: API Key ---
 if [ -z "$DEEPSEEK_API_KEY" ]; then
     echo ""
     echo -e "${BOLD}DeepSeek API Key${NC}"
@@ -61,15 +70,6 @@ if [ -z "$DEEPSEEK_API_KEY" ]; then
 
     if [ -n "$user_key" ]; then
         export DEEPSEEK_API_KEY="$user_key"
-
-        # Detect shell config
-        if [ -n "$ZSH_VERSION" ] || [ "$SHELL" = "/bin/zsh" ] || [ "$SHELL" = "/usr/bin/zsh" ]; then
-            config_file="$HOME/.zshrc"
-        elif [ -n "$BASH_VERSION" ] || [ "$SHELL" = "/bin/bash" ] || [ "$SHELL" = "/usr/bin/bash" ]; then
-            config_file="$HOME/.bashrc"
-        else
-            config_file="$HOME/.profile"
-        fi
 
         if grep -q "DEEPSEEK_API_KEY" "$config_file" 2>/dev/null; then
             echo -e "${YELLOW}⚠${NC} $config_file already contains DEEPSEEK_API_KEY. Skipping."
@@ -87,7 +87,7 @@ else
     echo -e "${GREEN}✓${NC} DeepSeek API key already set in environment"
 fi
 
-# --- Step 6: System prompt ---
+# --- Step 7: System prompt ---
 if [ ! -f .claude/settings.json ]; then
     if [ -f .claude/settings.example.json ]; then
         cp .claude/settings.example.json .claude/settings.json
