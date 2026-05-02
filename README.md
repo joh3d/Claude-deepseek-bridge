@@ -3,9 +3,9 @@
 ### You're paying for Claude Pro. You're still hitting limits by Wednesday.
 
 [![Stars](https://img.shields.io/github/stars/joh3d/Claude-deepseek-bridge?style=social)](https://github.com/joh3d/Claude-deepseek-bridge)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![DeepSeek API](https://img.shields.io/badge/DeepSeek-API-blue)](https://platform.deepseek.com/api_keys)
-[![Claude Code](https://img.shields.io/badge/Claude_Code-Pro%20Ready-orange)](https://claude.ai/code)
+[![License: MIT](https://img.shields.io/badge/License-MIT-00ADD8?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
+[![DeepSeek API](https://img.shields.io/badge/DeepSeek-V4-4F46E5?style=for-the-badge)](https://platform.deepseek.com/api_keys)
+[![Claude Code](https://img.shields.io/badge/Claude_Code-Pro_Ready-FF6F00?style=for-the-badge)](https://claude.ai/code)
 
 **Sound familiar?**
 You subscribed to Claude Pro. You're paying every month. And yet — every single week — you slam into the usage wall by Wednesday morning. The rest of the week? Degraded performance, throttled requests, and that sinking feeling when you realize you just burned half your limit on a CRUD endpoint you've written a hundred times before.
