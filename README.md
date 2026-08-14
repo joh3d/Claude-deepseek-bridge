@@ -35,15 +35,15 @@ But every token you spend on *boilerplate* is a token you don't spend on *brilli
 
 ```mermaid
 graph TD
-    A[You ask Claude to build feature X] --> B{Claude Opus 5 assesses}
-    B -->|Routine / Boilerplate| C[/deepseek: V4 Flash]
-    B -->|Complex Reasoning| D[/deepseek-pro: V4 Pro]
-    B -->|Core Architecture| E[Claude Opus 5]
-    C --> F[Claude reviews result]
+    A["You ask Claude to build feature X"] --> B{"Claude Opus 5 assesses"}
+    B -->|"Routine / Boilerplate"| C["/deepseek (V4 Flash)"]
+    B -->|"Complex Reasoning"| D["/deepseek-pro (V4 Pro)"]
+    B -->|"Core Architecture"| E["Claude Opus 5"]
+    C --> F["Claude reviews result"]
     D --> F
-    F --> G{Quality Verified?}
-    G -->|Yes| H[Integrated into Codebase]
-    G -->|No / Needs Polish| E
+    F --> G{"Quality Verified?"}
+    G -->|"Yes"| H["Integrated into Codebase"]
+    G -->|"No / Needs Polish"| E
 ```
 
 ---
