@@ -27,6 +27,8 @@ echo -e "${GREEN}✓${NC} Created .claude/commands/"
 if [ -f commands/deepseek ] && [ -f commands/deepseek-pro ]; then
     cp commands/deepseek .claude/commands/deepseek
     cp commands/deepseek-pro .claude/commands/deepseek-pro
+    [ -f commands/deepseek.cmd ] && cp commands/deepseek.cmd .claude/commands/deepseek.cmd
+    [ -f commands/deepseek-pro.cmd ] && cp commands/deepseek-pro.cmd .claude/commands/deepseek-pro.cmd
     chmod +x .claude/commands/deepseek .claude/commands/deepseek-pro
     echo -e "${GREEN}✓${NC} Installed /deepseek and /deepseek-pro commands"
 else
@@ -35,22 +37,18 @@ else
 fi
 
 # --- Step 3: Check Python ---
-if ! command -v python3 &> /dev/null; then
-    echo -e "${RED}✗${NC} Python 3 is required but not found. Please install Python 3.8+."
+PYTHON_BIN=""
+if command -v python3 &> /dev/null; then
+    PYTHON_BIN="python3"
+elif command -v python &> /dev/null; then
+    PYTHON_BIN="python"
+else
+    echo -e "${RED}✗${NC} Python is required but not found. Please install Python 3.8+."
     exit 1
 fi
-echo -e "${GREEN}✓${NC} Python 3 detected"
+echo -e "${GREEN}✓${NC} Python detected (${PYTHON_BIN})"
 
-# --- Step 4: Check for requests library ---
-if ! python3 -c "import requests" 2>/dev/null; then
-    echo -e "${YELLOW}⚠${NC} Python 'requests' package not found. Installing..."
-    pip3 install requests --quiet
-    echo -e "${GREEN}✓${NC} requests installed"
-else
-    echo -e "${GREEN}✓${NC} Python requests library available"
-fi
-
-# --- Step 5: Detect shell config file ---
+# --- Step 4: Detect shell config file ---
 if [ -n "$ZSH_VERSION" ] || [ "$SHELL" = "/bin/zsh" ] || [ "$SHELL" = "/usr/bin/zsh" ]; then
     config_file="$HOME/.zshrc"
 elif [ -n "$BASH_VERSION" ] || [ "$SHELL" = "/bin/bash" ] || [ "$SHELL" = "/usr/bin/bash" ]; then
@@ -59,14 +57,18 @@ else
     config_file="$HOME/.profile"
 fi
 
-# --- Step 6: API Key ---
+# --- Step 5: API Key ---
 if [ -z "$DEEPSEEK_API_KEY" ]; then
     echo ""
     echo -e "${BOLD}DeepSeek API Key${NC}"
     echo -e "Get one at: ${YELLOW}https://platform.deepseek.com/api_keys${NC}"
     echo -e "(Free account, pay-per-use at fractions of a cent.)"
     echo ""
-    read -p "Paste your DeepSeek API key: " user_key
+    if [ -t 0 ]; then
+        read -p "Paste your DeepSeek API key (or press enter to skip): " user_key
+    else
+        user_key=""
+    fi
 
     if [ -n "$user_key" ]; then
         export DEEPSEEK_API_KEY="$user_key"
@@ -87,17 +89,14 @@ else
     echo -e "${GREEN}✓${NC} DeepSeek API key already set in environment"
 fi
 
-# --- Step 7: System prompt ---
+# --- Step 6: System prompt ---
 if [ ! -f .claude/settings.json ]; then
     if [ -f .claude/settings.example.json ]; then
         cp .claude/settings.example.json .claude/settings.json
         echo -e "${GREEN}✓${NC} Created .claude/settings.json with delegation rules"
-    else
-        echo -e "${YELLOW}⚠${NC} No settings.example.json found. Skipping system prompt setup."
     fi
 else
     echo -e "${YELLOW}⚠${NC} .claude/settings.json already exists — left untouched."
-    echo "  Review .claude/settings.example.json and merge manually if needed."
 fi
 
 # --- Done ---

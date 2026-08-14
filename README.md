@@ -17,13 +17,13 @@ Claude‑DeepSeek Bridge gives Claude Code two new slash commands — **`/deepse
 
 ---
 
-## The Wound
+## 🩸 The Wound
 
 Claude Code with **Opus 4.7** is the best coding partner you've ever had. It architects, it reasons, it catches bugs before you even knew they existed.
 
 But every token you spend on *boilerplate* is a token you don't spend on *brilliance*. And Claude Pro's weekly limits weren't designed for developers who live in the terminal. By day three, you're throttled. By day four, you're frustrated. By Friday? You're questioning your subscription.
 
-## The Fix: Two‑Tier Delegation
+## 🩹 The Fix: Two‑Tier Delegation
 
 | Command | Model | Handles | Cost (per 1M tokens) |
 |---------|-------|---------|----------------------|
@@ -36,77 +36,93 @@ But every token you spend on *boilerplate* is a token you don't spend on *brilli
 ```mermaid
 graph TD
     A[You ask Claude to build feature X] --> B{Claude Opus 4.7 assesses}
-    B -->|Routine| C[deepseek-flash]
-    B -->|Moderate| D[deepseek-pro]
-    B -->|Critical| E[Claude Opus 4.7]
+    B -->|Routine / Boilerplate| C[/deepseek: Flash]
+    B -->|Complex Reasoning| D[/deepseek-pro: Pro]
+    B -->|Core Architecture| E[Claude Opus 4.7]
     C --> F[Claude reviews result]
     D --> F
-    F --> G{Good enough?}
-    G -->|Yes| H[Integrated into codebase]
-    G -->|No| E
+    F --> G{Quality Verified?}
+    G -->|Yes| H[Integrated into Codebase]
+    G -->|No / Needs Polish| E
 ```
 
 ---
 
-## Install in 30 Seconds
+## 🚀 Install in 30 Seconds
 
 ### Prerequisites
-- [Claude Code](https://claude.ai/code) (with Pro subscription — you're going to protect that investment)
-- Python 3.8+
+- [Claude Code](https://claude.ai/code) (with Pro subscription)
+- Python 3.8+ (Zero external pip dependencies required)
 - [DeepSeek API Key](https://platform.deepseek.com/api_keys) (free account, pay‑per‑use at fractions of a cent)
 
-### One‑Command Setup
+### Installation
 
+#### macOS / Linux / WSL
 ```bash
 git clone https://github.com/joh3d/Claude-deepseek-bridge.git
 cd Claude-deepseek-bridge
 bash setup.sh
 ```
 
-> **Windows users:** Run `bash setup.sh` via Git Bash or WSL. Alternatively, manually copy the files from `commands/` to `.claude/commands/` and set the `DEEPSEEK_API_KEY` environment variable.
+#### Windows (PowerShell)
+```powershell
+git clone https://github.com/joh3d/Claude-deepseek-bridge.git
+cd Claude-deepseek-bridge
+.\setup.ps1
+```
 
 That's it. The installer:
+- Creates `.claude/commands/` and copies slash commands (+ Windows wrappers)
+- Prompts for your DeepSeek API key and configures environment variables
+- Sets up `.claude/settings.json` with delegation rules
 
-- Creates `.claude/commands/` and copies both slash commands
-- Asks for your DeepSeek API key and saves it permanently
-- Drops a ready‑to‑use system prompt into `.claude/settings.json`
-- Makes the scripts executable
-
-Reload your shell (`source ~/.zshrc` or restart your terminal), then:
+Reload your terminal, then start Claude Code:
 ```bash
 claude
 ```
 
-Now just talk to Claude naturally:
+Now talk to Claude naturally:
 
-> *"Claude, write a FastAPI CRUD for users — use /deepseek for the boilerplate."*
+> *"Claude, write a FastAPI CRUD for users — use /deepseek for the boilerplate."*  
 > *"Claude, I have a tricky race condition in this async code — try /deepseek-pro for a first analysis."*
 
-Claude delegates, you save tokens, nobody hits the Friday wall.
+---
+
+## 🧩 How It Works
+
+Claude never blindly trusts — it always reviews. If a DeepSeek response isn't up to par, Claude fixes it or escalates to Pro. You lose fractions of a cent in tokens, not your weekly allowance.
 
 ---
 
-## How It Works
+## 🛠️ The Slash Commands
 
-Claude never blindly trusts — it always reviews. If a DeepSeek response isn't up to par, Claude fixes it or escalates to Pro. You lose a few cheap tokens, not your whole week.
+### `/deepseek` — Flash‑fast, dirt‑cheap
+Uses `deepseek-v4-flash` (or `deepseek-chat`). Perfect for:
+- CRUD endpoints & boilerplate
+- Unit tests, docstrings & comments
+- Regex expressions & string parsing
+- Shell scripts & config files
+
+### `/deepseek-pro` — Deeper reasoning & analysis
+Uses `deepseek-v4-pro` (or `deepseek-reasoner`). Supports reasoning process output (`reasoning_content`). Perfect for:
+- Multi-file refactoring & structural audits
+- Concurrency, race condition & deadlock analysis
+- SQL query & database index optimization
+- Performance profiling hypotheses
+
+### 💡 Piped / Stdin Input
+Pass live context directly into either command:
+```bash
+# Feed git diff for change summarization
+git diff | /deepseek "Summarize changes into a release note"
+
+# Feed file contents for deep analysis
+cat database/query.sql | /deepseek-pro "Optimize this query plan"
+```
 
 ---
 
-## The Slash Commands
-
-### `/deepseek` — flash‑fast, dirt‑cheap
-Uses `deepseek-v4-flash`, the fastest model in DeepSeek's lineup. Perfect for:
-CRUD endpoints, docstrings, unit tests, regex patterns, style formatting, first drafts of configs.
-
-### `/deepseek-pro` — deeper reasoning, still a bargain
-Uses `deepseek-v4-pro`, DeepSeek's high‑reasoning model. Perfect for:
-complex refactors, debugging hypotheses, SQL query optimization, data pipeline analysis.
-
-Both are plain Python scripts. Inspect them. Modify them. They're yours.
-
----
-
-## Quality: Does This Actually Work?
+## 📈 Quality: Does This Actually Work?
 
 | Task | Flash vs Opus 4.7 | Pro vs Opus 4.7 |
 |------|-------------------|-----------------|
@@ -116,11 +132,11 @@ Both are plain Python scripts. Inspect them. Modify them. They're yours.
 | Large‑scale Refactoring | 80% | 93% |
 | Architecture Design | Not delegated (Opus territory) | Not delegated |
 
->  **The pattern:** For routine work, DeepSeek is functionally identical. For complex work, Pro gets you within 5‑7% of Opus quality — and Claude reviews everything anyway.
+> 🎯 **The pattern:** For routine work, DeepSeek is functionally identical. For complex work, Pro gets you within 5‑7% of Opus quality — and Claude reviews everything anyway.
 
 ---
 
-## The Pro‑Subscription Protection Plan
+## 🔥 The Pro‑Subscription Protection Plan
 
 You're already paying for Claude Pro. That's an investment. Claude‑DeepSeek Bridge makes sure that investment actually lasts the whole week:
 
@@ -130,31 +146,40 @@ You're already paying for Claude Pro. That's an investment. Claude‑DeepSeek Br
 - **Thursday:** Complex refactor? Pro handles the heavy lift; Opus approves.
 - **Friday:** You ship. On time. Without throttling.
 
-> **Cost comparison — real numbers:** A typical PR review with 50k output tokens costs you **$3.75 with Opus 4.7**, **~$0.14 with /deepseek (V4 Flash)**, or **~$1.10 with /deepseek-pro (V4 Pro)**. That's up to **27× cheaper** for routine work — with Claude still reviewing every result.
-
-You didn't downgrade. You just stopped using a Ferrari to pick up groceries.
+> 💸 **Cost comparison — real numbers:** A typical review with 50k output tokens costs you **$3.75 with Opus 4.7**, **~$0.14 with /deepseek (V4 Flash)**, or **~$1.10 with /deepseek-pro (V4 Pro)**. That's up to **27× cheaper** for routine work — with Claude still reviewing every result.
 
 ---
 
-## FAQ
+## ⚙️ Configuration & Environment
 
-**I'm on a free Claude plan. Does this help?**
+| Variable | Default | Description |
+|---|---|---|
+| `DEEPSEEK_API_KEY` | *(Required)* | Your DeepSeek API key from [platform.deepseek.com](https://platform.deepseek.com/api_keys) |
+| `DEEPSEEK_BASE_URL` | `https://api.deepseek.com` | Custom API base URL or proxy endpoint |
+| `DEEPSEEK_MODEL` | `deepseek-v4-flash` | Model used by `/deepseek` |
+| `DEEPSEEK_PRO_MODEL` | `deepseek-v4-pro` | Model used by `/deepseek-pro` |
+
+---
+
+## ❓ FAQ
+
+**I'm on a free Claude plan. Does this help?**  
 Yes, but you feel the pain less. Pro users are the ones watching their subscription evaporate by Wednesday — this was built for you.
 
-**Does DeepSeek see my code?**
+**Does DeepSeek see my code?**  
 Only the prompts you explicitly delegate. No background scanning, no training on your data. The scripts use the standard API endpoint over HTTPS.
 
-**Can I switch models later?**
-Absolutely. Change the model field in the Python scripts. Grok, Gemini, any OpenAI‑compatible endpoint works.
+**Can I switch models later?**  
+Absolutely. Set `DEEPSEEK_MODEL` or `DEEPSEEK_PRO_MODEL`, or pass `-m <model>` on the command line.
 
-**What if DeepSeek produces garbage?**
-Claude Opus 4.7 reviews everything. Trash output gets rejected or rewritten. You lose a few cheap tokens, not your sanity.
+**What if DeepSeek produces garbage?**  
+Claude Opus 4.7 reviews everything. Trash output gets rejected or rewritten. You lose fractions of a cent, not your sanity.
 
-**Does this slow me down?**
-No — DeepSeek Flash responds in under a second for most tasks. Pro takes 2‑5 seconds for complex reasoning. The bottleneck is still you typing.
+**Does this slow me down?**  
+No — DeepSeek Flash responds in under a second for most tasks. Pro takes 2‑5 seconds for complex reasoning.
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
 Found a better model pairing? Want to add support for another provider? Open a PR. This is a tool by devs, for devs.
