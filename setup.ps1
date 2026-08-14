@@ -1,12 +1,11 @@
 # ============================================================
-# Claude-DeepSeek Bridge — Windows PowerShell Installer
+# Claude-DeepSeek Bridge - Windows PowerShell Installer
 # ============================================================
 
 $ErrorActionPreference = "Stop"
-[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
 Write-Host ""
-Write-Host "Claude-DeepSeek Bridge — Windows Setup" -ForegroundColor Cyan
+Write-Host "Claude-DeepSeek Bridge - Windows Setup" -ForegroundColor Cyan
 Write-Host "----------------------------------------" -ForegroundColor Cyan
 
 # --- Step 1: Create command directory ---
@@ -91,6 +90,6 @@ Write-Host "[OK] Setup completed successfully." -ForegroundColor Green
 Write-Host ""
 Write-Host "Next steps:"
 Write-Host "  1. Run Claude:  claude"
-Write-Host "  2. Usage:       /deepseek <prompt>"
-Write-Host "                  /deepseek-pro <complex prompt>"
+Write-Host "  2. Usage:       /deepseek [prompt]"
+Write-Host "                  /deepseek-pro [complex prompt]"
 Write-Host ""
