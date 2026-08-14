@@ -155,14 +155,14 @@ def stream_request(url, headers, payload, show_thinking=True, only_thinking=Fals
 
                     if reasoning_chunk and show_thinking:
                         if not is_reasoning_open:
-                            sys.stdout.write("🧠 [Reasoning Process]\n")
+                            sys.stdout.write("[Reasoning]\n")
                             is_reasoning_open = True
                         sys.stdout.write(reasoning_chunk)
                         sys.stdout.flush()
 
                     if content_chunk and not only_thinking:
                         if is_reasoning_open:
-                            sys.stdout.write("\n\n💡 [Response]\n")
+                            sys.stdout.write("\n\n[Response]\n")
                             is_reasoning_open = False
                         sys.stdout.write(content_chunk)
                         sys.stdout.flush()
@@ -189,10 +189,10 @@ def non_stream_request(url, headers, payload, show_thinking=True, only_thinking=
         content = message.get("content", "")
 
         if reasoning and show_thinking:
-            print("🧠 [Reasoning Process]")
+            print("[Reasoning]")
             print(reasoning)
             if not only_thinking and content:
-                print("\n💡 [Response]")
+                print("\n[Response]")
 
         if content and not only_thinking:
             print(content)

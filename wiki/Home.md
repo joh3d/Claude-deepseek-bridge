@@ -1,47 +1,43 @@
-# 🧠 Claude‑DeepSeek Bridge Wiki
+# Claude-DeepSeek Bridge Wiki
 
-Welcome to the official wiki! Everything you need to know about installation, configuration, and getting the most out of your Claude Pro subscription protection.
+Documentation and technical reference for the Claude-DeepSeek Bridge.
 
 ---
 
-## 🚀 Overview
+## Overview
 
-Claude‑DeepSeek Bridge gives Claude Code two powerful slash commands — **`/deepseek`** and **`/deepseek-pro`** — that delegate routine and intermediate tasks to DeepSeek's fastest and most capable models (**DeepSeek-V4-Flash** and **DeepSeek-V4-Pro**). **Claude Opus 5** stays in charge, your token limit stays intact, and you ship **all week long** at top performance.
+Claude-DeepSeek Bridge provides two slash commands — `/deepseek` and `/deepseek-pro` — to delegate routine and intermediate coding tasks to DeepSeek models (**DeepSeek-V4-Flash** and **DeepSeek-V4-Pro**). **Claude Opus 5** remains the primary orchestrator, maintaining code quality and preserving weekly rate limits on Claude Pro subscriptions.
 
 ```
-You:      "Claude, build me a FastAPI CRUD"
-Claude:   "Delegating to /deepseek — saving your Opus 5 tokens."
-          [DeepSeek-V4-Flash delivers boilerplate in <1s]
-Claude:   [Reviews & Synthesizes]  "Clean. Integrated."
+User:     "Claude, build a FastAPI CRUD endpoint for user management"
+Claude:   "Delegating boilerplate to /deepseek to preserve Opus 5 tokens."
+          [DeepSeek-V4-Flash generates router, models, and schemas]
+Claude:   [Reviews, validates, and integrates code into workspace]
 ```
 
 ---
 
-## 📑 Pages
+## Documentation Index
 
-| Page | Content |
-|------|---------|
-| 🏠 **[Home](Home)** | You are here |
-| ⚙️ **[Setup Guide](Setup-Guide)** | Full installation walkthrough (macOS, Linux, Windows PowerShell / WSL) |
-| 🛠️ **[Slash Commands](Slash-Commands)** | `/deepseek` & `/deepseek-pro` complete reference |
-| 💡 **[Usage Examples](Usage-Examples)** | Real-world use cases, prompts, and piping examples |
-| 🔧 **[Advanced Configuration](Advanced-Configuration)** | Custom models, custom endpoints, API tuning, and system prompts |
-
----
-
-## 🔥 The Idea
-
-You pay for Claude Pro. Yet you still hit the wall every Wednesday. This tool ensures that:
-
-- **Routine work** (CRUD, tests, docstrings, regex) → `/deepseek` (**$0.14** in / **$0.28** out per 1M tokens)
-- **Intermediate tasks** (refactoring, debugging, SQL) → `/deepseek-pro` (**$0.435** in / **$0.87** out per 1M tokens)
-- **Critical work** (architecture, security, review) → stays with **Claude Opus 5** (**$5.00** in / **$25.00** out per 1M tokens)
-
-**You don't downgrade. You load-balance.** 🚀
+| Document | Description |
+|---|---|
+| **[Home](Home)** | Overview and introduction |
+| **[Setup Guide](Setup-Guide)** | Installation on macOS, Linux, and Windows (PowerShell / WSL) |
+| **[Slash Commands](Slash-Commands)** | Detailed reference for `/deepseek` and `/deepseek-pro` |
+| **[Usage Examples](Usage-Examples)** | Production use cases, prompt patterns, and pipeline examples |
+| **[Advanced Configuration](Advanced-Configuration)** | Custom endpoints, model overrides, and system prompt tuning |
 
 ---
 
-## 🩸 Quick Start
+## Architecture Principles
+
+- **Routine Implementation** (CRUD, unit tests, docstrings, regex) -> `/deepseek` (**$0.14** in / **$0.28** out per 1M tokens)
+- **Intermediate Reasoning** (Refactoring, query optimization, debugging) -> `/deepseek-pro` (**$0.435** in / **$0.87** out per 1M tokens)
+- **Critical Logic & Architecture** (System design, security, final review) -> **Claude Opus 5** (**$5.00** in / **$25.00** out per 1M tokens)
+
+---
+
+## Quick Start
 
 ### macOS / Linux / WSL
 ```bash
@@ -57,13 +53,13 @@ cd Claude-deepseek-bridge
 .\setup.ps1
 ```
 
-Then start Claude Code:
+Launch Claude Code:
 ```bash
 claude
 ```
 
-And talk to Claude naturally:
+Execute slash commands:
 ```
 /deepseek Write a Python function for email validation
-/deepseek-pro Analyze this code for race conditions
+/deepseek-pro Analyze this async worker for race conditions
 ```

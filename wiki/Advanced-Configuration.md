@@ -1,36 +1,36 @@
-# 🔧 Advanced Configuration
+# Advanced Configuration
 
-Custom models, custom endpoints, API tuning, and environment configuration.
+Custom endpoints, model overrides, API tuning, and delegation policies.
 
 ---
 
-## 🎯 Model & Base URL Overrides
+## Model & Endpoint Overrides
 
-The Bridge supports standard environment variable overrides without modifying source code.
+Environment variables allow modifying models and API endpoints without altering script source code.
 
 ### Environment Variables
 
-| Variable | Default | Purpose |
+| Variable | Default | Description |
 |---|---|---|
-| `DEEPSEEK_API_KEY` | *(Required)* | Your API key from DeepSeek |
-| `DEEPSEEK_BASE_URL` | `https://api.deepseek.com` | Custom endpoint (e.g. proxy, OpenRouter, or local) |
-| `DEEPSEEK_MODEL` | `deepseek-v4-flash` | Model for `/deepseek` |
-| `DEEPSEEK_PRO_MODEL` | `deepseek-v4-pro` | Model for `/deepseek-pro` |
+| `DEEPSEEK_API_KEY` | *(Required)* | API key for authentication |
+| `DEEPSEEK_BASE_URL` | `https://api.deepseek.com` | Base URL for API requests |
+| `DEEPSEEK_MODEL` | `deepseek-v4-flash` | Model identifier for `/deepseek` |
+| `DEEPSEEK_PRO_MODEL` | `deepseek-v4-pro` | Model identifier for `/deepseek-pro` |
 
 ---
 
-## 🌐 Custom Endpoints & Alternative Providers
+## Alternative Providers & Local Models
 
-Any **OpenAI-compatible endpoint** can be used by setting `DEEPSEEK_BASE_URL` and `DEEPSEEK_MODEL`:
+Any **OpenAI-compatible API endpoint** can be used by configuring `DEEPSEEK_BASE_URL` and `DEEPSEEK_MODEL`.
 
-### Example: Local Ollama
+### Local Ollama
 ```bash
 export DEEPSEEK_BASE_URL="http://localhost:11434/v1"
 export DEEPSEEK_MODEL="qwen2.5-coder"
 export DEEPSEEK_PRO_MODEL="deepseek-r1:32b"
 ```
 
-### Example: OpenRouter
+### OpenRouter
 ```bash
 export DEEPSEEK_BASE_URL="https://openrouter.ai/api/v1"
 export DEEPSEEK_API_KEY="sk-or-v1-..."
@@ -40,54 +40,54 @@ export DEEPSEEK_PRO_MODEL="deepseek/deepseek-r1"
 
 ---
 
-## 🧠 Custom System Prompts
+## System Prompt Customization
 
-Edit `.claude/settings.json` or project-level `CLAUDE.md` to customize Claude's delegation behavior:
+Modify `.claude/settings.json` or workspace `CLAUDE.md` to calibrate Claude's delegation behavior:
 
 ```json
 {
-  "systemPrompt": "You are Claude Opus 5, operating inside Claude Code. Your user has a Pro subscription..."
+  "systemPrompt": "You are Claude Opus 5, operating inside Claude Code. Your user has a Claude Pro subscription..."
 }
 ```
 
-### Stricter Delegation Policy
-Add these constraints to your system prompt:
+### Strict Delegation Policy
+Enforce explicit constraints:
 ```
-- NEVER delegate authentication, encryption primitives, or financial calculations.
-- Always run /deepseek-pro on multi-threaded or async event loop architectures.
-- If /deepseek returns code with lint or typing errors, automatically fix it before presenting.
+- Do not delegate cryptographic primitives, authentication middleware, or payment transactions.
+- Run /deepseek-pro on multi-threaded or asynchronous code before finalizing.
+- Verify syntax and linter compliance on all delegated responses before presenting to the user.
 ```
 
-### Aggressive Token-Saving Policy
+### High-Efficiency Token Policy
 ```
-- Delegate ALL repetitive code, tests, and documentation to /deepseek.
-- Claude Opus 5 reserves tokens strictly for system architecture and final review.
+- Delegate all repetitive boilerplate, unit tests, and documentation generation to /deepseek.
+- Reserve Claude Opus 5 token allocation strictly for architecture, integration, and final review.
 ```
 
 ---
 
-## ⚡ CLI Flags & Options
+## Command Flags & Invocation Options
 
-Both `/deepseek` and `/deepseek-pro` accept inline CLI flags:
+Both `/deepseek` and `/deepseek-pro` support CLI flags:
 
 ```bash
-# Override temperature
-/deepseek -t 0.2 "Write strict deterministic regex"
+# Set sampling temperature
+/deepseek -t 0.2 "Write a strict regular expression for ISO-8601 dates"
 
-# Disable real-time streaming
-/deepseek --no-stream "Generate JSON schema"
+# Disable streaming output
+/deepseek --no-stream "Generate JSON schema definitions"
 
 # Manage reasoning output on Pro
-/deepseek-pro --no-thinking "Review SQL index plan"
-/deepseek-pro --only-thinking "Show only the reasoning tree"
+/deepseek-pro --no-thinking "Review database index strategy"
+/deepseek-pro --only-thinking "Output reasoning tree only"
 ```
 
 ---
 
-## 📊 Quality & Performance Heuristics
+## Runtime Performance Profiles
 
-| Model | Streaming Latency | Best Use |
+| Model | Streaming Latency | Workload Domain |
 |---|---|---|
-| `deepseek-v4-flash` | < 0.5s First Token | Repetitive functions, test cases, JSON/YAML schemas |
-| `deepseek-v4-pro` | 1–3s (Reasoning Phase) | Complex logic analysis, algorithmic refactors |
-| `Claude Opus 5` | Full Reasoning | Core architecture, final reviews, synthesis |
+| `deepseek-v4-flash` | < 0.5s First Token | Repetitive functions, test suites, schemas |
+| `deepseek-v4-pro` | 1–3s (Reasoning Phase) | Architectural analysis, query optimization |
+| `Claude Opus 5` | Full Synthesis | System architecture, critical review, integration |

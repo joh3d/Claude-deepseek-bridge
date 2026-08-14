@@ -1,140 +1,116 @@
-# ⚙️ Setup Guide
+# Setup Guide
 
-Complete installation instructions for Windows, macOS, and Linux.
+Complete installation and environment configuration for macOS, Linux, and Windows.
 
 ---
 
 ## Prerequisites
 
-| Tool | Version | Link | Notes |
-|------|---------|------|-------|
-| **Claude Code** | Any (Pro recommended) | [claude.ai/code](https://claude.ai/code) | Works with Claude Opus 5 |
-| **Python** | 3.8+ | [python.org](https://python.org) | Built-in standard library (zero external pip packages required) |
-| **DeepSeek API Key** | Free account | [platform.deepseek.com/api_keys](https://platform.deepseek.com/api_keys) | Pay-per-use at fractions of a cent |
+| Component | Minimum Version | Reference | Notes |
+|---|---|---|---|
+| **Claude Code** | Latest | [claude.ai/code](https://claude.ai/code) | Compatible with Claude Opus 5 |
+| **Python** | 3.8+ | [python.org](https://python.org) | Uses built-in standard library (no pip packages required) |
+| **DeepSeek API Key** | Active account | [platform.deepseek.com/api_keys](https://platform.deepseek.com/api_keys) | Pay-per-use API access |
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ### macOS / Linux / WSL
 
 ```bash
-# 1. Clone the repo
+# 1. Clone repository
 git clone https://github.com/joh3d/Claude-deepseek-bridge.git
 cd Claude-deepseek-bridge
 
-# 2. Run the installer
+# 2. Run installer
 bash setup.sh
 ```
 
 ### Windows (Native PowerShell)
 
 ```powershell
-# 1. Clone the repo
+# 1. Clone repository
 git clone https://github.com/joh3d/Claude-deepseek-bridge.git
 cd Claude-deepseek-bridge
 
-# 2. Run the PowerShell installer
+# 2. Run PowerShell installer
 .\setup.ps1
 ```
 
 The installer automatically:
-- ✅ Creates `.claude/commands/` directory
-- ✅ Copies `/deepseek` and `/deepseek-pro` commands (+ Windows `.cmd` wrappers)
-- ✅ Prompts for your DeepSeek API key
-- ✅ Saves the key permanently in your shell config or Windows User Environment
-- ✅ Generates the delegation system prompt in `.claude/settings.json`
+- Initializes the `.claude/commands/` directory.
+- Deploys `/deepseek` and `/deepseek-pro` executable commands along with Windows `.cmd` wrappers.
+- Prompts for `DEEPSEEK_API_KEY` and configures environment persistence.
+- Initializes `.claude/settings.json` with delegation rules.
 
 ---
 
-## 🔄 After Installation
+## Post-Installation Setup
 
-**Restart your terminal** or reload environment:
+Reload your terminal session:
 ```bash
-# macOS/Linux
+# macOS/Linux (zsh / bash)
 source ~/.zshrc   # or source ~/.bashrc
 
 # Windows PowerShell
 $env:DEEPSEEK_API_KEY = "your-key-here"
 ```
 
-Then launch Claude Code:
+Start Claude Code:
 ```bash
 claude
 ```
 
 ---
 
-## 🪟 Windows Setup Options
+## Windows Installation Options
 
 ### Option A: PowerShell Installer (Recommended)
-Open PowerShell in the repo directory and run:
+Run the automated installer script:
 ```powershell
 .\setup.ps1
 ```
-The script configures `.claude/commands/`, installs Windows `.cmd` wrappers, sets your User Environment variable, and initializes `.claude/settings.json`.
 
 ### Option B: Git Bash / WSL
+Execute via standard bash shell:
 ```bash
-git clone https://github.com/joh3d/Claude-deepseek-bridge.git
-cd Claude-deepseek-bridge
 bash setup.sh
 ```
 
 ---
 
-## 🖥 macOS & Linux Details
+## Verification
 
-```bash
-# Check Python version
-python3 --version
-
-# Run installer
-bash setup.sh
-
-# Reload shell
-source ~/.zshrc   # (macOS zsh) or source ~/.bashrc (Linux bash)
-```
-
----
-
-## ✅ Verify Installation
-
+Launch Claude Code and test command delegation:
 ```bash
 claude
-# In the Claude Code session:
-/deepseek Say "Hello World" in Python
-```
-
-Expected output:
-```python
-# DeepSeek Flash responds in <1 second
-print("Hello World")
+# In session:
+/deepseek Implement a Python function for URL slug generation
 ```
 
 ---
 
-## 🔄 Uninstall
+## Uninstallation
 
 ```bash
-# 1. Remove commands
+# Remove installed commands
 rm -rf .claude/commands/
 
-# 2. Reset settings (optional)
-rm .claude/settings.json
+# Remove local settings (optional)
+rm -f .claude/settings.json
 
-# 3. Remove API key from shell config / environment
-# In ~/.zshrc or ~/.bashrc, remove the line:
-# export DEEPSEEK_API_KEY="..."
+# Remove environment variable from shell config
+# Delete 'export DEEPSEEK_API_KEY=...' from ~/.zshrc or ~/.bashrc
 ```
 
 ---
 
-## ❌ Troubleshooting
+## Troubleshooting
 
-| Problem | Solution |
-|---------|----------|
-| `python3 / python: command not found` | Install Python 3.8+ and ensure it is in your system `PATH`. |
-| `DEEPSEEK_API_KEY not set` | Set `export DEEPSEEK_API_KEY="sk-..."` (Linux/macOS) or `$env:DEEPSEEK_API_KEY="sk-..."` (Windows). |
-| `commands/ directory not found` | Make sure you are executing the setup script from the root of the repository. |
-| `.claude/settings.json already exists` | The installer preserves your existing configuration. Check `.claude/settings.example.json` for new updates. |
+| Issue | Resolution |
+|---|---|
+| `python3 / python: command not found` | Install Python 3.8+ and verify it is available in system `PATH`. |
+| `DEEPSEEK_API_KEY not set` | Configure `export DEEPSEEK_API_KEY="sk-..."` (Unix) or `$env:DEEPSEEK_API_KEY="sk-..."` (PowerShell). |
+| `commands/ directory not found` | Ensure script execution originates from repository root. |
+| `.claude/settings.json already exists` | Existing configuration is preserved; merge updates manually from `.claude/settings.example.json`. |

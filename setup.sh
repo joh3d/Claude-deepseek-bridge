@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # ============================================================
-#  Claude-DeepSeek Bridge — One-Command Installer
-#  Protects your Claude Pro subscription from the Wednesday wall.
+# Claude-DeepSeek Bridge Installer
 # ============================================================
 
 set -e
@@ -13,15 +12,12 @@ BOLD='\033[1m'
 NC='\033[0m'
 
 echo ""
-echo -e "${BOLD}╔══════════════════════════════════════════════╗${NC}"
-echo -e "${BOLD}║   🧠 Claude-DeepSeek Bridge — Installer      ║${NC}"
-echo -e "${BOLD}║   Protect your Pro subscription.             ║${NC}"
-echo -e "${BOLD}╚══════════════════════════════════════════════╝${NC}"
-echo ""
+echo -e "${BOLD}Claude-DeepSeek Bridge — Setup${NC}"
+echo "----------------------------------------"
 
 # --- Step 1: Create command directory ---
 mkdir -p .claude/commands
-echo -e "${GREEN}✓${NC} Created .claude/commands/"
+echo -e "${GREEN}[OK]${NC} Initialized .claude/commands/"
 
 # --- Step 2: Copy slash commands ---
 if [ -f commands/deepseek ] && [ -f commands/deepseek-pro ]; then
@@ -30,9 +26,9 @@ if [ -f commands/deepseek ] && [ -f commands/deepseek-pro ]; then
     [ -f commands/deepseek.cmd ] && cp commands/deepseek.cmd .claude/commands/deepseek.cmd
     [ -f commands/deepseek-pro.cmd ] && cp commands/deepseek-pro.cmd .claude/commands/deepseek-pro.cmd
     chmod +x .claude/commands/deepseek .claude/commands/deepseek-pro
-    echo -e "${GREEN}✓${NC} Installed /deepseek and /deepseek-pro commands"
+    echo -e "${GREEN}[OK]${NC} Installed /deepseek and /deepseek-pro commands"
 else
-    echo -e "${RED}✗${NC} Could not find commands/ directory. Are you in the repo root?"
+    echo -e "${RED}[ERROR]${NC} Directory commands/ not found. Ensure execution from repository root."
     exit 1
 fi
 
@@ -43,10 +39,10 @@ if command -v python3 &> /dev/null; then
 elif command -v python &> /dev/null; then
     PYTHON_BIN="python"
 else
-    echo -e "${RED}✗${NC} Python is required but not found. Please install Python 3.8+."
+    echo -e "${RED}[ERROR]${NC} Python 3.8+ is required but not found in PATH."
     exit 1
 fi
-echo -e "${GREEN}✓${NC} Python detected (${PYTHON_BIN})"
+echo -e "${GREEN}[OK]${NC} Python runtime detected (${PYTHON_BIN})"
 
 # --- Step 4: Detect shell config file ---
 if [ -n "$ZSH_VERSION" ] || [ "$SHELL" = "/bin/zsh" ] || [ "$SHELL" = "/usr/bin/zsh" ]; then
@@ -60,12 +56,11 @@ fi
 # --- Step 5: API Key ---
 if [ -z "$DEEPSEEK_API_KEY" ]; then
     echo ""
-    echo -e "${BOLD}DeepSeek API Key${NC}"
-    echo -e "Get one at: ${YELLOW}https://platform.deepseek.com/api_keys${NC}"
-    echo -e "(Free account, pay-per-use at fractions of a cent.)"
+    echo "DeepSeek API Key Configuration"
+    echo "Obtain key at: https://platform.deepseek.com/api_keys"
     echo ""
     if [ -t 0 ]; then
-        read -p "Paste your DeepSeek API key (or press enter to skip): " user_key
+        read -p "Enter DeepSeek API key (or leave blank to configure later): " user_key
     else
         user_key=""
     fi
@@ -74,43 +69,38 @@ if [ -z "$DEEPSEEK_API_KEY" ]; then
         export DEEPSEEK_API_KEY="$user_key"
 
         if grep -q "DEEPSEEK_API_KEY" "$config_file" 2>/dev/null; then
-            echo -e "${YELLOW}⚠${NC} $config_file already contains DEEPSEEK_API_KEY. Skipping."
+            echo -e "${YELLOW}[WARN]${NC} $config_file already contains DEEPSEEK_API_KEY. Skipping append."
         else
             echo "" >> "$config_file"
             echo "# Claude-DeepSeek Bridge" >> "$config_file"
             echo "export DEEPSEEK_API_KEY=\"$user_key\"" >> "$config_file"
-            echo -e "${GREEN}✓${NC} API key saved to ${config_file}"
+            echo -e "${GREEN}[OK]${NC} DEEPSEEK_API_KEY persisted to $config_file"
         fi
     else
-        echo -e "${YELLOW}⚠${NC} No key entered. Set it manually later with:"
-        echo "  export DEEPSEEK_API_KEY=\"your-key-here\""
+        echo -e "${YELLOW}[INFO]${NC} No key entered. Set manually via:"
+        echo "  export DEEPSEEK_API_KEY=\"<key>\""
     fi
 else
-    echo -e "${GREEN}✓${NC} DeepSeek API key already set in environment"
+    echo -e "${GREEN}[OK]${NC} DEEPSEEK_API_KEY already configured in environment"
 fi
 
-# --- Step 6: System prompt ---
+# --- Step 6: System prompt configuration ---
 if [ ! -f .claude/settings.json ]; then
     if [ -f .claude/settings.example.json ]; then
         cp .claude/settings.example.json .claude/settings.json
-        echo -e "${GREEN}✓${NC} Created .claude/settings.json with delegation rules"
+        echo -e "${GREEN}[OK]${NC} Initialized .claude/settings.json"
     fi
 else
-    echo -e "${YELLOW}⚠${NC} .claude/settings.json already exists — left untouched."
+    echo -e "${YELLOW}[INFO]${NC} .claude/settings.json exists (preserved)"
 fi
 
-# --- Done ---
+# --- Step 7: Summary ---
 echo ""
-echo -e "${GREEN}${BOLD}╔══════════════════════════════════════════════╗${NC}"
-echo -e "${GREEN}${BOLD}║   Setup complete!                            ║${NC}"
-echo -e "${GREEN}${BOLD}╚══════════════════════════════════════════════╝${NC}"
+echo -e "${GREEN}[OK] Setup completed successfully.${NC}"
 echo ""
-echo -e "Next steps:"
-echo -e "  1. Reload your shell:  ${BOLD}source $config_file${NC}  (or restart terminal)"
-echo -e "  2. Start Claude Code:  ${BOLD}claude${NC}"
-echo -e "  3. Try:  ${BOLD}/deepseek Write a Python function to validate email addresses${NC}"
-echo -e "  4. Try:  ${BOLD}/deepseek-pro Analyze this code for race conditions${NC}"
-echo ""
-echo -e "${YELLOW}Claude Opus 5 stays in charge. DeepSeek handles the grind.${NC}"
-echo -e "${YELLOW}Your Pro subscription just started lasting the whole week.${NC}"
+echo "Next steps:"
+echo "  1. Reload shell:  source $config_file"
+echo "  2. Run Claude:    claude"
+echo "  3. Usage:         /deepseek <prompt>"
+echo "                    /deepseek-pro <complex prompt>"
 echo ""

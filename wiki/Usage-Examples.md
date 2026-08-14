@@ -1,70 +1,70 @@
-# 💡 Usage Examples
+# Usage Examples
 
-Real-world use cases — copy, paste, and ship.
+Reference examples for common development workflows.
 
 ---
 
-## 🐍 Python / FastAPI
+## Python & FastAPI
 
-### CRUD Endpoints
+### CRUD Router Implementation
 
 **Prompt to Claude:**
 ```
-Claude, build me a FastAPI CRUD for a blog system with:
-- Post, Comment, User models
-- Full CRUD including PATCH and DELETE
-- Pydantic schemas with validation
-- Use /deepseek for the boilerplate part
+Claude, create a FastAPI CRUD router for a blog service:
+- Post, Comment, and User SQLAlchemy models
+- Full CRUD operations with PATCH and DELETE endpoints
+- Pydantic schemas with field validation
+- Delegate boilerplate generation to /deepseek
 ```
 
-**Result:** DeepSeek-V4-Flash generates models, schemas, and CRUD routers in <1s. Claude Opus 5 reviews and integrates.
+**Workflow:** DeepSeek-V4-Flash generates data models, validation schemas, and router endpoints. Claude Opus 5 reviews, adjusts error handling, and integrates into the project.
 
-### Unit Tests
+### Unit Test Generation
 
 ```bash
-/deepseek Write pytest tests for this FastAPI endpoint. Include: happy path, validation errors, 404 case. Test data via pytest fixtures.
+/deepseek Write pytest tests for this FastAPI endpoint. Include: successful creation, schema validation failures, and 404 handler tests. Use pytest fixtures for sample data.
 ```
 
-### Data Validation
+### Schema Validation
 
 ```bash
-/deepseek Create Pydantic models for a user registration form:
-- username (3-20 chars, alphanumeric)
-- email (valid format)
-- password (min 8 chars, 1 uppercase, 1 number)
-- age (18-120)
+/deepseek Create Pydantic models for user registration:
+- username (3-20 alphanumeric characters)
+- email (RFC-compliant format)
+- password (minimum 8 chars, 1 uppercase, 1 digit)
+- age (integer range 18-120)
 ```
 
 ---
 
-## 🔷 TypeScript / React
+## TypeScript & React
 
-### Component + Handler
+### UI Component Construction
 
 ```bash
 /deepseek Build a React search component with:
-- Debounced input (300ms)
-- Loading/error/empty states
-- TypeScript strict mode
-- Basic Tailwind styling
+- Debounced input handler (300ms)
+- Loading, error, and empty state representations
+- TypeScript strict mode compliance
+- Basic CSS classes for responsive layout
 ```
 
-### Type Conversion via Pipe
+### TypeScript Migration via Stdin Pipeline
 
 ```bash
-cat src/utils/helpers.js | /deepseek "Convert this JavaScript utility file to TypeScript with strict types and proper generics."
+cat src/utils/helpers.js | /deepseek "Convert this JavaScript utility module to TypeScript with strict type signatures and generic constraints."
 ```
 
 ---
 
-## 🗄️ SQL / Database
+## Database & SQL
 
 ### Query Optimization
 
 ```bash
 /deepseek-pro Analyze and optimize this SQL query.
-I have 10M rows in orders and 500K in customers.
-Current execution time: 12s. Target: <500ms.
+Target: Orders table (10M rows) and Customers table (500k rows).
+Current execution time: 12 seconds. Target: < 500 milliseconds.
 
 SELECT c.name, COUNT(o.id) 
 FROM customers c
@@ -77,86 +77,75 @@ ORDER BY COUNT(o.id) DESC;
 ### Schema Design
 
 ```bash
-/deepseek Design a PostgreSQL schema for a multi-tenant SaaS:
-- Users with roles (admin, editor, viewer)
-- Projects with versioning
-- Activity log
-- Include indexes and foreign keys
+/deepseek Design a PostgreSQL database schema for a multi-tenant application:
+- Organizations and Users with role-based permissions (admin, editor, viewer)
+- Project versioning tables
+- Audit logging tables with foreign keys and index strategies
 ```
 
 ---
 
-## 🐳 Docker / DevOps
+## DevOps & Infrastructure
 
-### Dockerfile
+### Dockerfile Generation
 
 ```bash
-/deepseek Generate a Dockerfile for a Python 3.12 FastAPI app. Multi-stage build, optimize for size. Include healthcheck.
+/deepseek Generate a multi-stage Dockerfile for a Python 3.12 FastAPI service with non-root user execution, layer caching optimization, and container health checks.
 ```
 
-### CI/CD Pipeline
+### CI/CD Pipeline Configuration
 
 ```bash
-/deepseek Create a GitHub Actions workflow for:
-1. Run tests (pytest)
-2. Build Docker image
-3. Push to registry
-4. Deploy to staging
+/deepseek Create a GitHub Actions workflow that executes:
+1. Automated linting and pytest test execution
+2. Docker container image build and vulnerability scanning
+3. Registry deployment upon pull request merge
 ```
 
 ---
 
-## 🔍 Debugging / Refactoring
+## Debugging & Code Audits
 
-### Find Race Conditions
+### Concurrency and Deadlock Analysis
 
 ```bash
-cat src/worker.py | /deepseek-pro "I have an async Python function that intermittently deadlocks. Identify race conditions and suggest lock/semaphore fixes."
+cat src/worker.py | /deepseek-pro "This async Python worker intermittently deadlocks under high load. Identify race conditions and propose asyncio Lock / Semaphore mitigations."
 ```
 
-### Code Smell & Performance Audit
+### Static Quality and Performance Audit
 
 ```bash
 cat src/engine.py | /deepseek-pro "Review this module for:
-- Performance bottlenecks
-- Memory leaks
-- Unhandled exceptions
-- Suggest concrete refactoring steps"
+- Algorithmic performance bottlenecks
+- Unbounded memory growth patterns
+- Missing exception handling branches
+- Propose structured refactoring steps"
 ```
 
 ---
 
-## 🌐 Full Stack Load-Balancing Workflow
+## Full-Stack Delegation Workflow
 
 ```
-Claude, I need a complete real-time chat application:
-- FastAPI WebSockets Backend → /deepseek for router & models
-- React Chat Frontend → /deepseek for UI components
-- Database Migrations → /deepseek for Alembic scripts
-- Connection Concurrency Audit → /deepseek-pro
-- System Architecture & Auth Security → handled by Claude Opus 5
+Claude, implement a real-time messaging subsystem:
+- FastAPI WebSocket handler -> delegate to /deepseek
+- React Chat client component -> delegate to /deepseek
+- Database migration script -> delegate to /deepseek
+- WebSocket connection concurrency audit -> delegate to /deepseek-pro
+- Authentication architecture and message security review -> handled by Claude Opus 5
 ```
 
 ---
 
-## 📋 Quick Reference Cards
+## Task Delegation Decision Matrix
 
-### When to use `/deepseek` (Flash)?
-
-| Say this... | ...when you need |
-|-------------|------------------|
-| "Boilerplate" | CRUD, models, schemas |
-| "Tests" | Unit/integration tests |
-| "Documentation" | Docstrings, type annotations |
-| "Format" | Style fixes, TypeScript conversion |
-| "Draft" | First version of configs/scripts |
-
-### When to use `/deepseek-pro`?
-
-| Say this... | ...when you need |
-|-------------|------------------|
-| "Analyze" | Performance, security profiling |
-| "Optimize" | SQL queries, algorithms |
-| "Find the bug" | Race conditions, deadlocks, leaks |
-| "Refactor" | Improve code structure & modularity |
-| "Why is this slow?" | Bottleneck identification |
+| Intended Action | Recommended Command | Model |
+|---|---|---|
+| Boilerplate generation | `/deepseek` | DeepSeek-V4-Flash |
+| Unit and integration tests | `/deepseek` | DeepSeek-V4-Flash |
+| Docstrings and type annotations | `/deepseek` | DeepSeek-V4-Flash |
+| Syntax and style migration | `/deepseek` | DeepSeek-V4-Flash |
+| Concurrency and deadlock analysis | `/deepseek-pro` | DeepSeek-V4-Pro |
+| SQL query plan optimization | `/deepseek-pro` | DeepSeek-V4-Pro |
+| Structural code refactoring | `/deepseek-pro` | DeepSeek-V4-Pro |
+| System architecture and security | Claude Native | Claude Opus 5 |
