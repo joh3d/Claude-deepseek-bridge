@@ -1,9 +1,9 @@
 # Claude Code Guidelines: Claude-DeepSeek Bridge
 
-This repository provides slash command extensions (`/deepseek` and `/deepseek-pro`) for Claude Code to load-balance token consumption between Claude Opus 4.7 and DeepSeek models.
+This repository provides slash command extensions (`/deepseek` and `/deepseek-pro`) for Claude Code to load-balance token consumption between Claude Opus 5 and DeepSeek models (**DeepSeek-V4-Flash** & **DeepSeek-V4-Pro**).
 
 ## 🎯 Primary Objective
-Protect the user's Claude Pro subscription limit by delegating routine boilerplate, unit tests, and reasoning-heavy intermediate tasks to DeepSeek, while reserving Claude Opus 4.7 for system architecture, critical security, and final review.
+Protect the user's Claude Pro subscription limit by delegating routine boilerplate, unit tests, and reasoning-heavy intermediate tasks to DeepSeek, while reserving Claude Opus 5 for system architecture, critical security, and final review.
 
 ---
 
@@ -11,9 +11,9 @@ Protect the user's Claude Pro subscription limit by delegating routine boilerpla
 
 | Model | Command | Best Suited Tasks | Cost Efficiency |
 |---|---|---|---|
-| **DeepSeek Flash** | `/deepseek` | CRUD endpoints, docstrings, boilerplate, regex, unit test mocks, formatting, basic scripts | ~100x cheaper than Opus |
-| **DeepSeek Pro** | `/deepseek-pro` | Complex refactoring, concurrency analysis, deep bug hunting, SQL optimization | ~35x cheaper than Opus |
-| **Claude Opus 4.7** | *(stays with Claude)* | High-level system architecture, core business logic, critical security audits, final code review | Premium reasoning & synthesis |
+| **DeepSeek-V4-Flash** | `/deepseek` | CRUD endpoints, docstrings, boilerplate, regex, unit test mocks, formatting, basic scripts | **~89x cheaper** than Opus 5 |
+| **DeepSeek-V4-Pro** | `/deepseek-pro` | Complex refactoring, concurrency analysis, deep bug hunting, SQL optimization | **~28x cheaper** than Opus 5 |
+| **Claude Opus 5** | *(stays with Claude)* | High-level system architecture, core business logic, critical security audits, final code review | Premium reasoning & synthesis |
 
 ---
 
@@ -45,4 +45,4 @@ Protect the user's Claude Pro subscription limit by delegating routine boilerpla
 ---
 
 ## 🔒 Quality Control Principle
-Claude Opus 4.7 must review, sanitize, and verify all output returned from DeepSeek commands before finalizing changes or presenting them to the user.
+Claude Opus 5 must review, sanitize, and verify all output returned from DeepSeek commands before finalizing changes or presenting them to the user.

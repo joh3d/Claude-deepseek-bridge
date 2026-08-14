@@ -102,6 +102,6 @@ Write-Host "  1. Start Claude Code:  claude"
 Write-Host "  2. Try:  /deepseek Write a Python function to validate email addresses"
 Write-Host "  3. Try:  /deepseek-pro Analyze this code for race conditions"
 Write-Host ""
-Write-Host "Claude Opus 4.7 stays in charge. DeepSeek handles the grind." -ForegroundColor Cyan
+Write-Host "Claude Opus 5 stays in charge. DeepSeek handles the grind." -ForegroundColor Cyan
 Write-Host "Your Pro subscription just started lasting the whole week." -ForegroundColor Cyan
 Write-Host ""

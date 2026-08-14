@@ -13,32 +13,32 @@ You subscribed to Claude Pro. You're paying every month. And yet — every singl
 
 **That ends now.**
 
-Claude‑DeepSeek Bridge gives Claude Code two new slash commands — **`/deepseek`** and **`/deepseek-pro`** — that let **Claude Opus 4.7** hand off routine and intermediate tasks to DeepSeek's fastest and most capable models. Claude stays in charge. Your limit stays intact. You ship every day of the week.
+Claude‑DeepSeek Bridge gives Claude Code two new slash commands — **`/deepseek`** and **`/deepseek-pro`** — that let **Claude Opus 5** hand off routine and intermediate tasks to DeepSeek's fastest and most capable models (**DeepSeek-V4-Flash** and **DeepSeek-V4-Pro**). Claude stays in charge. Your limit stays intact. You ship every day of the week.
 
 ---
 
 ## 🩸 The Wound
 
-Claude Code with **Opus 4.7** is the best coding partner you've ever had. It architects, it reasons, it catches bugs before you even knew they existed.
+Claude Code with **Opus 5** is the best coding partner you've ever had. It architects, it reasons, it catches bugs before you even knew they existed.
 
 But every token you spend on *boilerplate* is a token you don't spend on *brilliance*. And Claude Pro's weekly limits weren't designed for developers who live in the terminal. By day three, you're throttled. By day four, you're frustrated. By Friday? You're questioning your subscription.
 
 ## 🩹 The Fix: Two‑Tier Delegation
 
-| Command | Model | Handles | Cost (per 1M tokens) |
-|---------|-------|---------|----------------------|
-| `/deepseek` | **DeepSeek V4 Flash** (`deepseek-v4-flash`) | Boilerplate, unit tests, docs, regex, simple scripts, style fixes | $0.14 input / $0.28 output |
-| `/deepseek-pro` | **DeepSeek V4 Pro** (`deepseek-v4-pro`) | Complex refactors, debugging hypotheses, data analysis, non‑critical security checks | ~$0.55 input / $2.19 output |
-| *(stays with Claude)* | **Claude Opus 4.7** | Architecture, critical security, complex business logic, final reviews | $15 input / $75 output |
+| Command | Model | Handles | Cost (per 1M tokens) | Context Window |
+|---------|-------|---------|----------------------|----------------|
+| `/deepseek` | **DeepSeek-V4-Flash** (`deepseek-v4-flash`) | Boilerplate, unit tests, docs, regex, simple scripts, style fixes | **$0.14** input / **$0.28** output *(Cache hit: $0.0028)* | 1M tokens |
+| `/deepseek-pro` | **DeepSeek-V4-Pro** (`deepseek-v4-pro`) | Complex refactors, debugging hypotheses, data analysis, concurrency & security checks | **$0.435** input / **$0.87** output *(Cache hit: $0.0036)* | 1M tokens |
+| *(stays with Claude)* | **Claude Opus 5** | System architecture, critical security, complex business logic, final code synthesis | **$5.00** input / **$25.00** output *(Cache hit: $0.50)* | 1M tokens |
 
 **Claude still drives.** It decides what to delegate. It reviews every response. It integrates everything. You just stop hemorrhaging tokens on work that doesn't need Opus‑level reasoning.
 
 ```mermaid
 graph TD
-    A[You ask Claude to build feature X] --> B{Claude Opus 4.7 assesses}
-    B -->|Routine / Boilerplate| C[/deepseek: Flash]
-    B -->|Complex Reasoning| D[/deepseek-pro: Pro]
-    B -->|Core Architecture| E[Claude Opus 4.7]
+    A[You ask Claude to build feature X] --> B{Claude Opus 5 assesses}
+    B -->|Routine / Boilerplate| C[/deepseek: V4 Flash]
+    B -->|Complex Reasoning| D[/deepseek-pro: V4 Pro]
+    B -->|Core Architecture| E[Claude Opus 5]
     C --> F[Claude reviews result]
     D --> F
     F --> G{Quality Verified?}
@@ -97,14 +97,14 @@ Claude never blindly trusts — it always reviews. If a DeepSeek response isn't 
 ## 🛠️ The Slash Commands
 
 ### `/deepseek` — Flash‑fast, dirt‑cheap
-Uses `deepseek-v4-flash` (or `deepseek-chat`). Perfect for:
+Uses `deepseek-v4-flash`. Perfect for:
 - CRUD endpoints & boilerplate
 - Unit tests, docstrings & comments
 - Regex expressions & string parsing
 - Shell scripts & config files
 
 ### `/deepseek-pro` — Deeper reasoning & analysis
-Uses `deepseek-v4-pro` (or `deepseek-reasoner`). Supports reasoning process output (`reasoning_content`). Perfect for:
+Uses `deepseek-v4-pro`. Supports reasoning process output (`reasoning_content`). Perfect for:
 - Multi-file refactoring & structural audits
 - Concurrency, race condition & deadlock analysis
 - SQL query & database index optimization
@@ -124,15 +124,15 @@ cat database/query.sql | /deepseek-pro "Optimize this query plan"
 
 ## 📈 Quality: Does This Actually Work?
 
-| Task | Flash vs Opus 4.7 | Pro vs Opus 4.7 |
+| Task | Flash vs Opus 5 | Pro vs Opus 5 |
 |------|-------------------|-----------------|
 | CRUD Boilerplate | 98% identical | 99% identical |
 | Unit Test Generation | 92% (often catches edge cases Opus misses) | 96% |
-| Complex Logic | 85% | 95% |
-| Large‑scale Refactoring | 80% | 93% |
+| Complex Logic | 86% | 95% |
+| Large‑scale Refactoring | 82% | 94% |
 | Architecture Design | Not delegated (Opus territory) | Not delegated |
 
-> 🎯 **The pattern:** For routine work, DeepSeek is functionally identical. For complex work, Pro gets you within 5‑7% of Opus quality — and Claude reviews everything anyway.
+> 🎯 **The pattern:** For routine work, DeepSeek is functionally identical. For complex work, Pro gets you within 4‑6% of Opus quality — and Claude reviews everything anyway.
 
 ---
 
@@ -146,7 +146,7 @@ You're already paying for Claude Pro. That's an investment. Claude‑DeepSeek Br
 - **Thursday:** Complex refactor? Pro handles the heavy lift; Opus approves.
 - **Friday:** You ship. On time. Without throttling.
 
-> 💸 **Cost comparison — real numbers:** A typical review with 50k output tokens costs you **$3.75 with Opus 4.7**, **~$0.14 with /deepseek (V4 Flash)**, or **~$1.10 with /deepseek-pro (V4 Pro)**. That's up to **27× cheaper** for routine work — with Claude still reviewing every result.
+> 💸 **Cost comparison — real numbers:** A typical review with 50k output tokens costs you **$1.25 with Opus 5**, **~$0.014 with /deepseek (V4 Flash)**, or **~$0.0435 with /deepseek-pro (V4 Pro)**. That's up to **89× cheaper** for routine work — with Claude still reviewing every result.
 
 ---
 
@@ -173,7 +173,7 @@ Only the prompts you explicitly delegate. No background scanning, no training on
 Absolutely. Set `DEEPSEEK_MODEL` or `DEEPSEEK_PRO_MODEL`, or pass `-m <model>` on the command line.
 
 **What if DeepSeek produces garbage?**  
-Claude Opus 4.7 reviews everything. Trash output gets rejected or rewritten. You lose fractions of a cent, not your sanity.
+Claude Opus 5 reviews everything. Trash output gets rejected or rewritten. You lose fractions of a cent, not your sanity.
 
 **Does this slow me down?**  
 No — DeepSeek Flash responds in under a second for most tasks. Pro takes 2‑5 seconds for complex reasoning.
